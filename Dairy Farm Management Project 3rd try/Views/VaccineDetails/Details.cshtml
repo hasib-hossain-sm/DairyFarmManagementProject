@@ -1,0 +1,47 @@
+﻿@model Dairy_Farm_Management_Project_3rd_try.Models.VaccineDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Code by Angela Delise
+    https://codepen.io/angeladelise/full/LYREErG -->
+
+</head>
+
+<body class="newbody">
+
+    <div>
+        <h4>VaccineDetail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NameOfDisease)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NameOfDisease)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MinimumAge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MinimumAge)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.VaccineNo }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</body>

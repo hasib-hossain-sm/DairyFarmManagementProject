@@ -1,0 +1,49 @@
+﻿.newbody {
+    font-family: Mukta, sans-serif;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    color: #4f546c;
+    font-size: 1.2rem;
+    background-color: #f9fbff;
+}
+
+.newtable {
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px #e1e5ee;
+    background-color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.newthead {
+    box-shadow: 0 5px 10px #e1e5ee;
+}
+
+.newth {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1.7rem;
+    font-weight: 900;
+}
+
+.newtd {
+    padding: 2rem 2rem;
+    color: black;
+    font: bold;
+    font-size: 16px;
+}
+
+.newa {
+    text-decoration: none;
+    color: #2962ff;
+}
+
+.newamount {
+    text-align: right;
+}
+
+.newtr:nth-child(even) {
+    background-color: #f4f6fb;
+}

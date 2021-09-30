@@ -1,0 +1,100 @@
+﻿@model Dairy_Farm_Management_Project_3rd_try.Models.HerdReport
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Code by Angela Delise
+    https://codepen.io/angeladelise/full/LYREErG -->
+
+</head>
+
+<body class="newbody">
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>HerdReport</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LifeStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LifeStatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TypesOfBreed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TypesOfBreed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReproductionStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReproductionStatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TagNoOfMother)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TagNoOfMother)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TagNoOfFather)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TagNoOfFather)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>

@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DairyFarm3rdTryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="isSignedIn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BreedingRecord">
+          <Key>
+            <PropertyRef Name="BreedingNo" />
+          </Key>
+          <Property Name="BreedingNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagNo" Type="int" Nullable="false" />
+          <Property Name="PreviousCalvingDate" Type="date" />
+          <Property Name="SuccessfulSemen" Type="nvarchar" MaxLength="100" />
+          <Property Name="PregnancyTestDate" Type="date" />
+          <Property Name="PregnancyStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExpectedCalvingDate" Type="date" />
+          <Property Name="ActualCalvingDate" Type="date" />
+        </EntityType>
+        <EntityType Name="DailyMilkProduction">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="TagNo" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="TagNo" Type="int" Nullable="false" />
+          <Property Name="TotalMilk" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HerdReport">
+          <Key>
+            <PropertyRef Name="TagNo" />
+          </Key>
+          <Property Name="TagNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="LifeStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="TypesOfBreed" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="100" />
+          <Property Name="Age" Type="int" />
+          <Property Name="ReproductionStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="TagNoOfMother" Type="int" />
+          <Property Name="TagNoOfFather" Type="int" />
+        </EntityType>
+        <EntityType Name="SignUp">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TreatmentReport">
+          <Key>
+            <PropertyRef Name="TreatmentNo" />
+          </Key>
+          <Property Name="TreatmentNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagNo" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="BodyTemperature" Type="int" />
+          <Property Name="Symptoms" Type="nvarchar" MaxLength="100" />
+          <Property Name="Treatment" Type="nvarchar" MaxLength="100" />
+          <Property Name="Diagnosis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Medicine" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="EventNo" />
+          </Key>
+          <Property Name="EventNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagNo" Type="int" Nullable="false" />
+          <Property Name="VaccineNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VaccineDetails">
+          <Key>
+            <PropertyRef Name="VaccineNo" />
+          </Key>
+          <Property Name="VaccineNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfDisease" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MinimumAge" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BreedingR__TagNo__267ABA7A">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="BreedingRecord" Type="Self.BreedingRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="BreedingRecord">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DailyMilk__TagNo__2C3393D0">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="DailyMilkProduction" Type="Self.DailyMilkProduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="DailyMilkProduction">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Treatment__TagNo__29572725">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="TreatmentReport" Type="Self.TreatmentReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="TreatmentReport">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinati__TagNo__30F848ED">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinati__Vacci__31EC6D26">
+          <End Role="VaccineDetails" Type="Self.VaccineDetails" Multiplicity="1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VaccineDetails">
+              <PropertyRef Name="VaccineNo" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="VaccineNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DairyFarm3rdTryModelStoreContainer">
+          <EntitySet Name="Auth" EntityType="Self.Auth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BreedingRecord" EntityType="Self.BreedingRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyMilkProduction" EntityType="Self.DailyMilkProduction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HerdReport" EntityType="Self.HerdReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SignUp" EntityType="Self.SignUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TreatmentReport" EntityType="Self.TreatmentReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaccination" EntityType="Self.Vaccination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VaccineDetails" EntityType="Self.VaccineDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BreedingR__TagNo__267ABA7A" Association="Self.FK__BreedingR__TagNo__267ABA7A">
+            <End Role="HerdReport" EntitySet="HerdReport" />
+            <End Role="BreedingRecord" EntitySet="BreedingRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DailyMilk__TagNo__2C3393D0" Association="Self.FK__DailyMilk__TagNo__2C3393D0">
+            <End Role="HerdReport" EntitySet="HerdReport" />
+            <End Role="DailyMilkProduction" EntitySet="DailyMilkProduction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Treatment__TagNo__29572725" Association="Self.FK__Treatment__TagNo__29572725">
+            <End Role="HerdReport" EntitySet="HerdReport" />
+            <End Role="TreatmentReport" EntitySet="TreatmentReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinati__TagNo__30F848ED" Association="Self.FK__Vaccinati__TagNo__30F848ED">
+            <End Role="HerdReport" EntitySet="HerdReport" />
+            <End Role="Vaccination" EntitySet="Vaccination" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinati__Vacci__31EC6D26" Association="Self.FK__Vaccinati__Vacci__31EC6D26">
+            <End Role="VaccineDetails" EntitySet="VaccineDetails" />
+            <End Role="Vaccination" EntitySet="Vaccination" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DairyFarm3rdTryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="isSignedIn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BreedingRecord">
+          <Key>
+            <PropertyRef Name="BreedingNo" />
+          </Key>
+          <Property Name="BreedingNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagNo" Type="Int32" Nullable="false" />
+          <Property Name="PreviousCalvingDate" Type="DateTime" Precision="0" />
+          <Property Name="SuccessfulSemen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PregnancyTestDate" Type="DateTime" Precision="0" />
+          <Property Name="PregnancyStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedCalvingDate" Type="DateTime" Precision="0" />
+          <Property Name="ActualCalvingDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="HerdReport" Relationship="Self.FK__BreedingR__TagNo__267ABA7A" FromRole="BreedingRecord" ToRole="HerdReport" />
+        </EntityType>
+        <EntityType Name="DailyMilkProduction">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="TagNo" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TagNo" Type="Int32" Nullable="false" />
+          <Property Name="TotalMilk" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HerdReport" Relationship="Self.FK__DailyMilk__TagNo__2C3393D0" FromRole="DailyMilkProduction" ToRole="HerdReport" />
+        </EntityType>
+        <EntityType Name="HerdReport">
+          <Key>
+            <PropertyRef Name="TagNo" />
+          </Key>
+          <Property Name="TagNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="LifeStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TypesOfBreed" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="ReproductionStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TagNoOfMother" Type="Int32" />
+          <Property Name="TagNoOfFather" Type="Int32" />
+          <NavigationProperty Name="BreedingRecords" Relationship="Self.FK__BreedingR__TagNo__267ABA7A" FromRole="HerdReport" ToRole="BreedingRecord" />
+          <NavigationProperty Name="DailyMilkProductions" Relationship="Self.FK__DailyMilk__TagNo__2C3393D0" FromRole="HerdReport" ToRole="DailyMilkProduction" />
+          <NavigationProperty Name="TreatmentReports" Relationship="Self.FK__Treatment__TagNo__29572725" FromRole="HerdReport" ToRole="TreatmentReport" />
+          <NavigationProperty Name="Vaccinations" Relationship="Self.FK__Vaccinati__TagNo__30F848ED" FromRole="HerdReport" ToRole="Vaccination" />
+        </EntityType>
+        <EntityType Name="SignUp">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TreatmentReport">
+          <Key>
+            <PropertyRef Name="TreatmentNo" />
+          </Key>
+          <Property Name="TreatmentNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagNo" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BodyTemperature" Type="Int32" />
+          <Property Name="Symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Treatment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Diagnosis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Medicine" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HerdReport" Relationship="Self.FK__Treatment__TagNo__29572725" FromRole="TreatmentReport" ToRole="HerdReport" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="EventNo" />
+          </Key>
+          <Property Name="EventNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagNo" Type="Int32" Nullable="false" />
+          <Property Name="VaccineNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HerdReport" Relationship="Self.FK__Vaccinati__TagNo__30F848ED" FromRole="Vaccination" ToRole="HerdReport" />
+          <NavigationProperty Name="VaccineDetail" Relationship="Self.FK__Vaccinati__Vacci__31EC6D26" FromRole="Vaccination" ToRole="VaccineDetails" />
+        </EntityType>
+        <EntityType Name="VaccineDetail">
+          <Key>
+            <PropertyRef Name="VaccineNo" />
+          </Key>
+          <Property Name="VaccineNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfDisease" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinimumAge" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vaccinations" Relationship="Self.FK__Vaccinati__Vacci__31EC6D26" FromRole="VaccineDetails" ToRole="Vaccination" />
+        </EntityType>
+        <Association Name="FK__BreedingR__TagNo__267ABA7A">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="BreedingRecord" Type="Self.BreedingRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="BreedingRecord">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DailyMilk__TagNo__2C3393D0">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="DailyMilkProduction" Type="Self.DailyMilkProduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="DailyMilkProduction">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Treatment__TagNo__29572725">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="TreatmentReport" Type="Self.TreatmentReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="TreatmentReport">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinati__TagNo__30F848ED">
+          <End Role="HerdReport" Type="Self.HerdReport" Multiplicity="1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HerdReport">
+              <PropertyRef Name="TagNo" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="TagNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinati__Vacci__31EC6D26">
+          <End Role="VaccineDetails" Type="Self.VaccineDetail" Multiplicity="1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VaccineDetails">
+              <PropertyRef Name="VaccineNo" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="VaccineNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DairyFarm3rdTryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auths" EntityType="Self.Auth" />
+          <EntitySet Name="BreedingRecords" EntityType="Self.BreedingRecord" />
+          <EntitySet Name="DailyMilkProductions" EntityType="Self.DailyMilkProduction" />
+          <EntitySet Name="HerdReports" EntityType="Self.HerdReport" />
+          <EntitySet Name="SignUps" EntityType="Self.SignUp" />
+          <EntitySet Name="TreatmentReports" EntityType="Self.TreatmentReport" />
+          <EntitySet Name="Vaccinations" EntityType="Self.Vaccination" />
+          <EntitySet Name="VaccineDetails" EntityType="Self.VaccineDetail" />
+          <AssociationSet Name="FK__BreedingR__TagNo__267ABA7A" Association="Self.FK__BreedingR__TagNo__267ABA7A">
+            <End Role="HerdReport" EntitySet="HerdReports" />
+            <End Role="BreedingRecord" EntitySet="BreedingRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DailyMilk__TagNo__2C3393D0" Association="Self.FK__DailyMilk__TagNo__2C3393D0">
+            <End Role="HerdReport" EntitySet="HerdReports" />
+            <End Role="DailyMilkProduction" EntitySet="DailyMilkProductions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Treatment__TagNo__29572725" Association="Self.FK__Treatment__TagNo__29572725">
+            <End Role="HerdReport" EntitySet="HerdReports" />
+            <End Role="TreatmentReport" EntitySet="TreatmentReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinati__TagNo__30F848ED" Association="Self.FK__Vaccinati__TagNo__30F848ED">
+            <End Role="HerdReport" EntitySet="HerdReports" />
+            <End Role="Vaccination" EntitySet="Vaccinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinati__Vacci__31EC6D26" Association="Self.FK__Vaccinati__Vacci__31EC6D26">
+            <End Role="VaccineDetails" EntitySet="VaccineDetails" />
+            <End Role="Vaccination" EntitySet="Vaccinations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DairyFarm3rdTryModelStoreContainer" CdmEntityContainer="DairyFarm3rdTryEntities">
+          <EntitySetMapping Name="Auths">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.Auth">
+              <MappingFragment StoreEntitySet="Auth">
+                <ScalarProperty Name="isSignedIn" ColumnName="isSignedIn" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BreedingRecords">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.BreedingRecord">
+              <MappingFragment StoreEntitySet="BreedingRecord">
+                <ScalarProperty Name="BreedingNo" ColumnName="BreedingNo" />
+                <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+                <ScalarProperty Name="PreviousCalvingDate" ColumnName="PreviousCalvingDate" />
+                <ScalarProperty Name="SuccessfulSemen" ColumnName="SuccessfulSemen" />
+                <ScalarProperty Name="PregnancyTestDate" ColumnName="PregnancyTestDate" />
+                <ScalarProperty Name="PregnancyStatus" ColumnName="PregnancyStatus" />
+                <ScalarProperty Name="ExpectedCalvingDate" ColumnName="ExpectedCalvingDate" />
+                <ScalarProperty Name="ActualCalvingDate" ColumnName="ActualCalvingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyMilkProductions">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.DailyMilkProduction">
+              <MappingFragment StoreEntitySet="DailyMilkProduction">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+                <ScalarProperty Name="TotalMilk" ColumnName="TotalMilk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HerdReports">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.HerdReport">
+              <MappingFragment StoreEntitySet="HerdReport">
+                <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="LifeStatus" ColumnName="LifeStatus" />
+                <ScalarProperty Name="TypesOfBreed" ColumnName="TypesOfBreed" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="ReproductionStatus" ColumnName="ReproductionStatus" />
+                <ScalarProperty Name="TagNoOfMother" ColumnName="TagNoOfMother" />
+                <ScalarProperty Name="TagNoOfFather" ColumnName="TagNoOfFather" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SignUps">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.SignUp">
+              <MappingFragment StoreEntitySet="SignUp">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TreatmentReports">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.TreatmentReport">
+              <MappingFragment StoreEntitySet="TreatmentReport">
+                <ScalarProperty Name="TreatmentNo" ColumnName="TreatmentNo" />
+                <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BodyTemperature" ColumnName="BodyTemperature" />
+                <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+                <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
+                <ScalarProperty Name="Medicine" ColumnName="Medicine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaccinations">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.Vaccination">
+              <MappingFragment StoreEntitySet="Vaccination">
+                <ScalarProperty Name="EventNo" ColumnName="EventNo" />
+                <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+                <ScalarProperty Name="VaccineNo" ColumnName="VaccineNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VaccineDetails">
+            <EntityTypeMapping TypeName="DairyFarm3rdTryModel.VaccineDetail">
+              <MappingFragment StoreEntitySet="VaccineDetails">
+                <ScalarProperty Name="VaccineNo" ColumnName="VaccineNo" />
+                <ScalarProperty Name="NameOfDisease" ColumnName="NameOfDisease" />
+                <ScalarProperty Name="MinimumAge" ColumnName="MinimumAge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DairyFarm3rdTryModelStoreContainer" CdmEntityContainer="DairyFarm3rdTryEntities">
+    <EntitySetMapping Name="Auths">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.Auth">
+        <MappingFragment StoreEntitySet="Auth">
+          <ScalarProperty Name="isSignedIn" ColumnName="isSignedIn" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BreedingRecords">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.BreedingRecord">
+        <MappingFragment StoreEntitySet="BreedingRecord">
+          <ScalarProperty Name="BreedingNo" ColumnName="BreedingNo" />
+          <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+          <ScalarProperty Name="PreviousCalvingDate" ColumnName="PreviousCalvingDate" />
+          <ScalarProperty Name="SuccessfulSemen" ColumnName="SuccessfulSemen" />
+          <ScalarProperty Name="PregnancyTestDate" ColumnName="PregnancyTestDate" />
+          <ScalarProperty Name="PregnancyStatus" ColumnName="PregnancyStatus" />
+          <ScalarProperty Name="ExpectedCalvingDate" ColumnName="ExpectedCalvingDate" />
+          <ScalarProperty Name="ActualCalvingDate" ColumnName="ActualCalvingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DailyMilkProductions">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.DailyMilkProduction">
+        <MappingFragment StoreEntitySet="DailyMilkProduction">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+          <ScalarProperty Name="TotalMilk" ColumnName="TotalMilk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HerdReports">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.HerdReport">
+        <MappingFragment StoreEntitySet="HerdReport">
+          <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="LifeStatus" ColumnName="LifeStatus" />
+          <ScalarProperty Name="TypesOfBreed" ColumnName="TypesOfBreed" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="ReproductionStatus" ColumnName="ReproductionStatus" />
+          <ScalarProperty Name="TagNoOfMother" ColumnName="TagNoOfMother" />
+          <ScalarProperty Name="TagNoOfFather" ColumnName="TagNoOfFather" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SignUps">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.SignUp">
+        <MappingFragment StoreEntitySet="SignUp">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TreatmentReports">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.TreatmentReport">
+        <MappingFragment StoreEntitySet="TreatmentReport">
+          <ScalarProperty Name="TreatmentNo" ColumnName="TreatmentNo" />
+          <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="BodyTemperature" ColumnName="BodyTemperature" />
+          <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
+          <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+          <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
+          <ScalarProperty Name="Medicine" ColumnName="Medicine" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vaccinations">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.Vaccination">
+        <MappingFragment StoreEntitySet="Vaccination">
+          <ScalarProperty Name="EventNo" ColumnName="EventNo" />
+          <ScalarProperty Name="TagNo" ColumnName="TagNo" />
+          <ScalarProperty Name="VaccineNo" ColumnName="VaccineNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VaccineDetails">
+      <EntityTypeMapping TypeName="DairyFarm3rdTryModel.VaccineDetail">
+        <MappingFragment StoreEntitySet="VaccineDetails">
+          <ScalarProperty Name="VaccineNo" ColumnName="VaccineNo" />
+          <ScalarProperty Name="NameOfDisease" ColumnName="NameOfDisease" />
+          <ScalarProperty Name="MinimumAge" ColumnName="MinimumAge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

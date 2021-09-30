@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.0.7/css/font-awesome.min.css">
+</head>
+<body>
+    @*new nevigation bar vertical*@
+    <div id="mySidenav" class="sidenav">
+        <p class="logo"><span>Dairy</span>-Farm</p>
+        <a href="Dashboards" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
+        <a href="HerdReports" class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;Herd Report</a>
+        <a href="BreedingRecords" class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Breeding Record</a>
+        <a href="TreatmentReports" class="icon-a"><i class="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Treatment Report</a>
+        <a href="DailyMilkProductions" class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Daily Milk Production</a>
+        <a href="Vaccinations" class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Vaccination</a>
+        <a href="DueVaccination" class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Due Vaccination</a>
+        <a href="VaccineDetails" class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Vaccine Details</a>
+        <a href="Home" class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Log Out</a>
+
+    </div>
+    @*navigationbar ager code
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    *@
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Dairy Farm Management Project</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

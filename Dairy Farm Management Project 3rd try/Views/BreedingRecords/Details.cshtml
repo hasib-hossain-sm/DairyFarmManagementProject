@@ -1,0 +1,87 @@
+﻿@model Dairy_Farm_Management_Project_3rd_try.Models.BreedingRecord
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Code by Angela Delise
+    https://codepen.io/angeladelise/full/LYREErG -->
+
+</head>
+
+<body class="newbody">
+
+    <div>
+        <h4>BreedingRecord</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PreviousCalvingDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PreviousCalvingDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SuccessfulSemen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SuccessfulSemen)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PregnancyTestDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PregnancyTestDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PregnancyStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PregnancyStatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ExpectedCalvingDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ExpectedCalvingDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ActualCalvingDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ActualCalvingDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HerdReport.LifeStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HerdReport.LifeStatus)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.BreedingNo }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</body>

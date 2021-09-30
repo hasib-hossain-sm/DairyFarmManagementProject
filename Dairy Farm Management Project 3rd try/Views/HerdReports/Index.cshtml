@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Dairy_Farm_Management_Project_3rd_try.Models.HerdReport>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+@*
+    <h2>Index</h2>
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LifeStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypesOfBreed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReproductionStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TagNoOfMother)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TagNoOfFather)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LifeStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypesOfBreed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReproductionStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagNoOfMother)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagNoOfFather)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.TagNo }) |
+                @Html.ActionLink("Details", "Details", new { id=item.TagNo }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.TagNo })
+            </td>
+        </tr>
+    }
+
+    </table>
+
+*@
+
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Code by Angela Delise
+    https://codepen.io/angeladelise/full/LYREErG -->
+
+</head>
+
+<body class="newbody">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="newtable">
+        <thead class="newthead">
+            <tr class="newtr">
+                <th class="newth">@Html.DisplayNameFor(model => model.TagNo)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.LifeStatus)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.TypesOfBreed)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.Gender)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.Age)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.ReproductionStatus)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.TagNoOfFather)</th>
+                <th class="newth">@Html.DisplayNameFor(model => model.TagNoOfMother)</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                <tr class="newtr">
+                    <td class="newtd"><a href="HerdReports/Details/@item.TagNo">@Html.DisplayFor(modelItem => item.TagNo)</a></td>
+                    <td class="newtd">@Html.DisplayFor(modelItem => item.DateOfBirth)</td>
+                    <td class="newtd">@Html.DisplayFor(modelItem => item.LifeStatus)</td>
+                    <td class="newtd">@Html.DisplayFor(modelItem => item.TypesOfBreed)</td>
+                    <td class="newtd">@Html.DisplayFor(modelItem => item.Gender)</td>
+                    <td class="newtd">@Html.DisplayFor(modelItem => item.Age)</td>
+                    <td class="newtd">@Html.DisplayFor(modelItem => item.ReproductionStatus)</td>
+                    <td class="newtd"><a href="HerdReports/Details/@item.TagNoOfFather">@Html.DisplayFor(modelItem => item.TagNoOfFather)</a></td>
+                    <td class="newtd"><a href="HerdReports/Details/@item.TagNoOfMother">@Html.DisplayFor(modelItem => item.TagNoOfMother)</a></td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TagNo }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TagNo }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TagNo })
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</body>

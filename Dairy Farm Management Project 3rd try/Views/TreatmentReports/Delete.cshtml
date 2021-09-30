@@ -1,0 +1,94 @@
+﻿@model Dairy_Farm_Management_Project_3rd_try.Models.TreatmentReport
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Code by Angela Delise
+    https://codepen.io/angeladelise/full/LYREErG -->
+
+</head>
+
+<body class="newbody">
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>TreatmentReport</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BodyTemperature)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BodyTemperature)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Symptoms)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Symptoms)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Treatment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Treatment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Diagnosis)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Diagnosis)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Medicine)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Medicine)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HerdReport.LifeStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HerdReport.LifeStatus)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+
+</body>
